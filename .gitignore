@@ -15,3 +15,6 @@
 
 # JetBrains IDE related files
 .idea/
+
+# envfile
+.env
