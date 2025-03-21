@@ -6,39 +6,39 @@ import (
 )
 
 type VISA_TC05_TCR1 struct {
-	TransactionCode                             int    `fixed:"1,2"`
-	MessageHashTotal                            string `fixed:"3,4"`
-	TransactionCodeQualifier                    int    `fixed:"5,5"`
-	TransactionComponentSequenceNumber          int    `fixed:"6,6"`
-	BusinessFormatCode                          string `fixed:"7,7,none,_"` // disable padding
-	TokenAssuranceLevel                         string `fixed:"8,8,none,_"` // disable padding
-	Reserved1                                   string `fixed:"10,18"`
-	Reserved2                                   string `fixed:"19,24"`
-	DocumentationIndicator                      string `fixed:"25,25,none,_"` // disable padding
-	MemberMessageText                           string `fixed:"26,75"`
-	SpecialConditionIndicator                   string `fixed:"76,77,none,_"` // disable padding
-	FeeProgramIndicator                         string `fixed:"78,80"`
-	IssuerCharge                                string `fixed:"81,81,none,_"` // disable padding
-	Reserved3                                   string `fixed:"82,82"`
-	CardAcceptorID                              string `fixed:"83,97"`
-	TerminalID                                  string `fixed:"98,105"`
-	NationalReimbursementFee                    string `fixed:"106,117"`
-	MailPhoneElectronicCommercePaymentIndicator string `fixed:"118,118,none,_"` // disable padding
-	SpecialChargebackIndicator                  string `fixed:"119,119,none,_"` // disable padding
-	ConversionDate                              string `fixed:"120,123"`
-	Reserved4                                   string `fixed:"124,125"`
-	AcceptanceTerminalIndicator                 string `fixed:"126,126,none,_"` // disable padding
-	PrepaidCardIndicator                        string `fixed:"127,127,none,_"` // disable padding
-	ServiceDevelopmentField                     string `fixed:"128,128,none,_"` // disable padding
-	AVSResponseCode                             string `fixed:"129,129,none,_"` // disable padding
-	AuthorizationSourceCode                     string `fixed:"130,130,none,_"` // disable padding
-	PurchaseIdentifierFormat                    string `fixed:"131,131,none,_"` // disable padding
-	AccountSelection                            string `fixed:"132,132,none,_"` // disable padding
-	InstallmentPaymentCount                     string `fixed:"133,134,none,_"` // disable padding
-	PurchaseIdentifier                          string `fixed:"135,159"`
-	CardBlock                                   string `fixed:"160,168"`
-	ChipConditionCode                           string `fixed:"169,169,none,_"` // disable padding
-	POSEnvironment                              string `fixed:"170,170,none,_"` // disable padding
+	TransactionCode                             int          `fixed:"1,2"`
+	MessageHashTotal                            string       `fixed:"3,4"`
+	TransactionCodeQualifier                    int          `fixed:"5,5"`
+	TransactionComponentSequenceNumber          int          `fixed:"6,6"`
+	BusinessFormatCode                          string       `fixed:"7,7,none,_"` // disable padding
+	TokenAssuranceLevel                         string       `fixed:"8,8,none,_"` // disable padding
+	Reserved1                                   string       `fixed:"10,18"`
+	Reserved2                                   string       `fixed:"19,24"`
+	DocumentationIndicator                      string       `fixed:"25,25,none,_"` // disable padding
+	MemberMessageText                           EbcdicString `fixed:"26,75"`
+	SpecialConditionIndicator                   string       `fixed:"76,77,none,_"` // disable padding
+	FeeProgramIndicator                         string       `fixed:"78,80"`
+	IssuerCharge                                string       `fixed:"81,81,none,_"` // disable padding
+	Reserved3                                   string       `fixed:"82,82"`
+	CardAcceptorID                              string       `fixed:"83,97"`
+	TerminalID                                  string       `fixed:"98,105"`
+	NationalReimbursementFee                    string       `fixed:"106,117"`
+	MailPhoneElectronicCommercePaymentIndicator string       `fixed:"118,118,none,_"` // disable padding
+	SpecialChargebackIndicator                  string       `fixed:"119,119,none,_"` // disable padding
+	ConversionDate                              string       `fixed:"120,123"`
+	Reserved4                                   string       `fixed:"124,125"`
+	AcceptanceTerminalIndicator                 string       `fixed:"126,126,none,_"` // disable padding
+	PrepaidCardIndicator                        string       `fixed:"127,127,none,_"` // disable padding
+	ServiceDevelopmentField                     string       `fixed:"128,128,none,_"` // disable padding
+	AVSResponseCode                             string       `fixed:"129,129,none,_"` // disable padding
+	AuthorizationSourceCode                     string       `fixed:"130,130,none,_"` // disable padding
+	PurchaseIdentifierFormat                    string       `fixed:"131,131,none,_"` // disable padding
+	AccountSelection                            string       `fixed:"132,132,none,_"` // disable padding
+	InstallmentPaymentCount                     string       `fixed:"133,134,none,_"` // disable padding
+	PurchaseIdentifier                          string       `fixed:"135,159"`
+	CardBlock                                   string       `fixed:"160,168"`
+	ChipConditionCode                           string       `fixed:"169,169,none,_"` // disable padding
+	POSEnvironment                              string       `fixed:"170,170,none,_"` // disable padding
 }
 
 func TestVISA_TC05_TCR1_Parse_Test(t *testing.T) {
@@ -68,7 +68,7 @@ func TestVISA_TC05_TCR1_Parse_Test(t *testing.T) {
 		Reserved1:                          "",
 		Reserved2:                          "000000",
 		DocumentationIndicator:             " ",
-		MemberMessageText:                  "IR International_Pre_PS2000",
+		MemberMessageText:                  EbcdicString{S: "IR International_Pre_PS2000"},
 		SpecialConditionIndicator:          "  ",
 		FeeProgramIndicator:                "903",
 		IssuerCharge:                       " ",

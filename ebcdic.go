@@ -26,3 +26,7 @@ func (s EbcdicString) MarshalText() ([]byte, error) {
 	}
 	return encoded, nil
 }
+
+func (s EbcdicString) String() string {
+	return s.S
+}
