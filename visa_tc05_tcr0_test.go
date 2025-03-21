@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-type VISA_TC_05_TCR_0 struct {
+type VISA_TC05_TCR0 struct {
 	TransactionCode int `fixed:"1,2"`
 	// TODO : Handle MessageHashTotal as a byte array
 	MessageHashTotal                                string `fixed:"3,4"`
@@ -45,9 +45,9 @@ type VISA_TC_05_TCR_0 struct {
 	ReimbursementAttribute                          string `fixed:"170,170,none,_"` // disable padding
 }
 
-func TestVISA_TC05_Parse_Test1(t *testing.T) {
+func TestVISA_TC05_TCR0_Parse_Test(t *testing.T) {
 	// Read test file
-	testFile := "./visa_tc05_test1.data"
+	testFile := "./visa_tc05_tcr0_test.hex"
 	data, err := os.ReadFile(testFile)
 	if err != nil {
 		t.Fatalf("Failed to read test file: %v", err)
@@ -55,14 +55,14 @@ func TestVISA_TC05_Parse_Test1(t *testing.T) {
 
 	// Convert to string and parse
 	record := string(data)
-	var visa VISA_TC_05_TCR_0
+	var visa VISA_TC05_TCR0
 	err = Unmarshal([]byte(record), &visa)
 	if err != nil {
 		t.Fatalf("Failed to unmarshal record: %v", err)
 	}
 
 	// Verify parsed data matches expected values
-	expected := VISA_TC_05_TCR_0{
+	expected := VISA_TC05_TCR0{
 		TransactionCode:                                 25,
 		MessageHashTotal:                                string([]byte{28, 133}), // Represented as �� in the file
 		TransactionCodeQualifier:                        0,
